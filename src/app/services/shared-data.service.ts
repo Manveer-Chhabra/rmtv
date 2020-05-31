@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class SharedDataService {
   private searchInput = '';
+  private guestSessionId;
 
   constructor() { }
 
@@ -14,5 +15,13 @@ export class SharedDataService {
 
   getSearchInput(){
     return this.searchInput;
+  }
+
+  setGuestSessionId(id){
+    this.guestSessionId = id;
+  }
+
+  getGuestSessionId(){
+    return this.guestSessionId;
   }
 }

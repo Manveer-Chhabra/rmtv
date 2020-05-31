@@ -10,7 +10,7 @@
         <div class="details">
             {{movieData.overview}}
         </div>
-        <div  class="tags">
+        <div class="tags">
             <span class="genre-ist" *ngFor="let genre of movieData.genres; let i = index">
                 <span>
                     {{genre.name}}
@@ -23,7 +23,7 @@
                 </span>
             </span>
         </div>
-        <div  class="details">
+        <div class="details">
             <span class="production-list" *ngFor="let production of movieData.production_companies; let i = index">
                 <span>
                     {{production.name}}
@@ -37,30 +37,39 @@
             </span>
         </div>
         <div class="release-details">
-               <div class="tags">
+            <div class="tags">
                 <span>
-                    Release Date - 
+                    Release Date -
                 </span>
                 <span>
                     {{movieData.release_date | date:'longDate'}}
                 </span>
-               </div>
-               <div class="tags">
+            </div>
+            <div class="tags">
                 <span>
-                    Running Time - 
+                    Running Time -
                 </span>
                 <span>
                     {{movieData.runtime}} mins
                 </span>
-               </div>
-               <div class="tags">
+            </div>
+            <div class="tags">
                 <span>
-                    Box Office - 
+                    Box Office -
                 </span>
                 <span>
                     {{movieData.revenue | currency:"USD":"symbol"}}
                 </span>
-               </div>
+            </div>
+            <div class="tags">
+                <span>
+                    Rate It -
+                </span>
+                <span>
+                    <mat-slider thumbLabel tickInterval=".5" min="0" max="10" step="0.5" (change)="addRating($event)">
+                    </mat-slider>
+                </span>
+            </div>
         </div>
     </div>
 </div>

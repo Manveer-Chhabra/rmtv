@@ -29,6 +29,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.sharedService.getGuestSessionId().subscribe(data => {
+      this.sharedDataService.setGuestSessionId(data['request_token']);
+    });
     this.searchText = this.sharedDataService.getSearchInput();
     if (this.searchText) {
       this.getMoviesAndTvShowData();
@@ -38,12 +41,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   onSearch($event) {
     this.searchText = $event;
     if (this.searchText) {
-    this.sharedDataService.setSearchInput(this.searchText);
-    this.getMoviesAndTvShowData();
+      this.sharedDataService.setSearchInput(this.searchText);
+      this.getMoviesAndTvShowData();
     }
   }
 
-  getMoviesAndTvShowData(){
+  getMoviesAndTvShowData() {
     this.searched = true;
     this.loadedMovieData = false;
     this.loadedTvShowData = false;
@@ -55,33 +58,35 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   loadMovies() {
     this.subscriptions.add(
-    this.sharedService.getFilteredMovieResults(this.searchText, this.moviesPage).subscribe(data => {
-      this.movieSearchResults = data.results;
-      this.totalMovieResults = data.total_results;
-      this.moviesPage++;
-      this.loadedMovieData = true;
-    }, err => {
-      console.log(err);
-    }
-    ));
+      this.sharedService.getFilteredMovieResults(this.searchText, this.moviesPage).subscribe(data => {
+        this.movieSearchResults = data.results;
+        this.totalMovieResults = data.total_results;
+        this.moviesPage++;
+        this.loadedMovieData = true;
+      }, err => {
+        console.log(err);
+      }
+      ));
   }
 
   loadTvShows() {
     this.subscriptions.add(
-    this.sharedService.getFilteredTvShowResults(this.searchText, this.tvShowsPage).subscribe(data => {
-      this.totalTvShowResults = data.total_results;
-      this.tvSearchResults = data.results;
-      this.loadedTvShowData = true;
-    }, err => {
-      console.log(err);
-    }
-    ));
+      this.sharedService.getFilteredTvShowResults(this.searchText, this.tvShowsPage).subscribe(data => {
+        this.totalTvShowResults = data.total_results;
+        this.tvSearchResults = data.results;
+        this.loadedTvShowData = true;
+      }, err => {
+        console.log(err);
+      }
+      ));
   }
 
   moviesScrolled() {
     return this.subscriptions.add(this.sharedService.getFilteredMovieResults(this.searchText, this.moviesPage).subscribe(data => {
       this.moviesPage++;
       this.movieSearchResults = this.movieSearchResults.concat(data.results);
+    }, err => {
+      console.log(err);
     }
     ));
   }
@@ -90,17 +95,17 @@ export class HomeComponent implements OnInit, OnDestroy {
     return this.subscriptions.add(this.sharedService.getFilteredTvShowResults(this.searchText, this.tvShowsPage).subscribe(data => {
       this.tvShowsPage++;
       this.tvSearchResults = this.tvSearchResults.concat(data.results);
+    }, err => {
+      console.log(err);
     }));
   }
 
-  goToMovieDetails(movie){
-    console.log(movie);
-    this.router.navigate(['/movie',  { id: movie.id }]);
+  goToMovieDetails(movie) {
+    this.router.navigate(['/movie', { id: movie.id }]);
   }
 
-  goToTvShowDetails(movie){
-    console.log(movie);
-    this.router.navigate(['/tv_show',  { id: movie.id }]);
+  goToTvShowDetails(movie) {
+    this.router.navigate(['/tv_show', { id: movie.id }]);
   }
 
   ngOnDestroy() {
