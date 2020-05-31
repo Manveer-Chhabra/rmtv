@@ -1,7 +1,8 @@
 .search-results-container{
     .section-header{
         margin: 20px;
-        font-size: 24px;
+        font-size: 1.5rem;
+        font-weight: 800;
     }
     .section-content{
         display: flex;
@@ -11,6 +12,9 @@
         .item-container {
             width: 200px;
             margin: 10px;
+            .poster{
+                cursor: pointer;
+            }
             .item-title{
                 white-space: nowrap;
                 overflow: hidden;

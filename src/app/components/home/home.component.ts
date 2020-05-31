@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SharedService } from 'src/app/services/shared.service';
 import { combineLatest, forkJoin, Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +23,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   loadedTvShowData = false;
   private subscriptions = new Subscription();
 
-  constructor(private sharedService: SharedService) {
+  constructor(private sharedService: SharedService, private router: Router) {
     this.movieScrollCallback = this.moviesScrolled.bind(this);
   }
 
@@ -78,6 +79,16 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.tvShowsPage++;
       this.tvSearchResults = this.tvSearchResults.concat(data.results);
     }));
+  }
+
+  goToMovieDetails(movie){
+    console.log(movie);
+    this.router.navigate(['/movie',  { id: movie.id }]);
+  }
+
+  goToTvShowDetails(movie){
+    console.log(movie);
+    this.router.navigate(['/tv_show',  { id: movie.id }]);
   }
 
   ngOnDestroy() {
