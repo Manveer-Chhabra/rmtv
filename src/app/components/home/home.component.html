@@ -1,5 +1,5 @@
 <div class="home-container">
-    <app-search-bar (search)="onSearch($event)"></app-search-bar>
+    <app-search-bar (search)="onSearch($event)" [searchInput]="searchText"></app-search-bar>
 
     <div class="search-results-container" *ngIf="searched">
         <div class="section-header">
