@@ -1,20 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from 'src/app/services/shared.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tv-show-details',
   templateUrl: './tv-show-details.component.html',
   styleUrls: ['./tv-show-details.component.scss']
 })
-export class TvShowDetailsComponent implements OnInit {
-
+export class TvShowDetailsComponent implements OnInit, OnDestroy {
   tvShowId;
   imageBaseUrl = 'https://image.tmdb.org/t/p/w500';
   backgroundImageBaseUrl = 'https://image.tmdb.org/t/p/original';
   tvShowData;
   backgroundImage;
+  loadedTvShowData = false;
+  subscriptions = new Subscription();
 
   constructor(
     private route: ActivatedRoute,
@@ -25,13 +27,27 @@ export class TvShowDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.tvShowId);
-    this.sharedService.getTvShowDetails(this.tvShowId).subscribe(data => {
-      console.log(data);
-      this.tvShowData = data;
-      const backdropImageUrl = `${this.backgroundImageBaseUrl}${this.tvShowData.backdrop_path}`;
-      this.backgroundImage = this.sanitizer.bypassSecurityTrustStyle(`url(${backdropImageUrl})`);
+    this.subscriptions.add(
+      this.sharedService.getTvShowDetails(this.tvShowId).subscribe(data => {
+        this.tvShowData = data;
+        this.loadedTvShowData = true;
+        const backdropImageUrl = `${this.backgroundImageBaseUrl}${this.tvShowData.backdrop_path}`;
+        this.backgroundImage = this.sanitizer.bypassSecurityTrustStyle(`url(${backdropImageUrl})`);
+      }, err => {
+        console.log(err);
+        this.loadedTvShowData = true;
+      }));
+  }
+
+  addRating($event) {
+    this.sharedService.addTvShowRating(this.tvShowId, $event.value).subscribe(data => {
+      // console.log(data);
+    }, err => {
+      console.log(err);
     });
   }
 
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
+  }
 }
