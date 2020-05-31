@@ -1,0 +1,22 @@
+.search-results-container{
+    .section-header{
+        margin: 20px;
+        font-size: 24px;
+    }
+    .section-content{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        overflow-x: auto;
+        .item-container {
+            width: 200px;
+            margin: 10px;
+            .item-title{
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+}
+
