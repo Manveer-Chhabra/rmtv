@@ -31,14 +31,16 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   onSearch($event) {
+    this.searchText = $event;
+    if (this.searchText) {
     this.searched = true;
     this.loadedMovieData = false;
     this.loadedTvShowData = false;
-    this.searchText = $event;
     this.moviesPage = 1;
     this.tvShowsPage = 1;
     this.loadMovies();
     this.loadTvShows();
+    }
   }
 
   loadMovies() {

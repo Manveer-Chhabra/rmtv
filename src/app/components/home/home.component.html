@@ -2,7 +2,10 @@
 
 <div class="search-results-container" *ngIf="searched">
     <div class="section-header">
-        Movies {{totalMovieResults}}
+        Movies
+        <span class="results-count">
+            ({{totalMovieResults}})
+        </span>
     </div>
     <div class="section-content" infiniteScroll [infiniteScrollDistance]="0" [infiniteScrollThrottle]="150"
         (scrolled)="moviesScrolled()" [scrollWindow]="false" [horizontal]="true" *ngIf="movieSearchResults.length !==0 && loadedMovieData">
@@ -21,7 +24,10 @@
 
 <div class="search-results-container" *ngIf="searched">
     <div class="section-header">
-        TV Shows {{totalTvShowResults}}
+        TV Shows 
+        <span class="results-count" >
+            ({{totalTvShowResults}})
+        </span>
     </div>
     <div class="section-content" infiniteScroll [infiniteScrollDistance]="0" [infiniteScrollThrottle]="150"
         (scrolled)="tvShowsScrolled()" [scrollWindow]="false" [horizontal]="true" *ngIf="tvSearchResults.length !==0 && loadedTvShowData">
