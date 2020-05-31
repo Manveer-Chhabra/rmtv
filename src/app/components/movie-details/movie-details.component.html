@@ -1,5 +1,5 @@
-<div class="movie-details" *ngIf="movieData" [style.background-image]="backgroundImage">
-    <img [src]="imageBaseUrl + movieData.poster_path" [alt]="movieData.title" width="400" height="600" class="poster">
+<div class="movie-details" *ngIf="movieData  && loadedMovieData" [style.background-image]="backgroundImage">
+    <img [src]="imageBaseUrl + movieData.poster_path" [alt]="movieData.title" width="400" height="550" class="poster">
     <div class="movie-meta-data-container">
         <div class="title">
             {{movieData.title}}
@@ -64,6 +64,6 @@
         </div>
     </div>
 </div>
-<div class="movie-details" *ngIf="!movieData">
+<div class="movie-details" *ngIf="!movieData && loadedMovieData">
     No movie exists with this id.
 </div>

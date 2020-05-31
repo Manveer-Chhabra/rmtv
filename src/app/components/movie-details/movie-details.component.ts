@@ -14,6 +14,7 @@ export class MovieDetailsComponent implements OnInit {
   backgroundImageBaseUrl = 'https://image.tmdb.org/t/p/original';
   movieData;
   backgroundImage;
+  loadedMovieData = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,10 +27,13 @@ export class MovieDetailsComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.movieId);
     this.sharedService.getMovieDetails(this.movieId).subscribe(data => {
-      console.log(data);
       this.movieData = data;
+      this.loadedMovieData = true;
       const backdropImageUrl = `${this.backgroundImageBaseUrl}${this.movieData.backdrop_path}`;
       this.backgroundImage = this.sanitizer.bypassSecurityTrustStyle(`url(${backdropImageUrl})`);
+    }, err => {
+        console.log(err);
+        this.loadedMovieData = true;
     });
   }
 

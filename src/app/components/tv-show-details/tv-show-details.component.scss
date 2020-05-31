@@ -1,14 +1,14 @@
 .tvShow-details{
     justify-content: center;
     display: flex;
-    height: calc(100vh - 40px);
+    height: calc(100vh - 75px);
     align-items: center;
     .tvShow-meta-data-container{
-        background: black;
+        background: rgba(0,0,0,.85);
         color: white;
         padding: 20px;
-        height: 560px;
-        width: 500px;
+        height: 510px;
+        width: 600px;
         .title {
             font-size: 1.5rem;
             margin: 10px 0;

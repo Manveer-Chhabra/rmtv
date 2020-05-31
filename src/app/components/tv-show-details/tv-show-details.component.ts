@@ -9,12 +9,12 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./tv-show-details.component.scss']
 })
 export class TvShowDetailsComponent implements OnInit {
-
   tvShowId;
   imageBaseUrl = 'https://image.tmdb.org/t/p/w500';
   backgroundImageBaseUrl = 'https://image.tmdb.org/t/p/original';
   tvShowData;
   backgroundImage;
+  loadedTvShowData = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,8 +29,12 @@ export class TvShowDetailsComponent implements OnInit {
     this.sharedService.getTvShowDetails(this.tvShowId).subscribe(data => {
       console.log(data);
       this.tvShowData = data;
+      this.loadedTvShowData = true;
       const backdropImageUrl = `${this.backgroundImageBaseUrl}${this.tvShowData.backdrop_path}`;
       this.backgroundImage = this.sanitizer.bypassSecurityTrustStyle(`url(${backdropImageUrl})`);
+    }, err => {
+      console.log(err);
+      this.loadedTvShowData = true;
     });
   }
 

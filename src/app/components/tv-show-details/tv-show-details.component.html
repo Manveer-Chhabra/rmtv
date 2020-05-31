@@ -1,66 +1,66 @@
-<div class="tvShow-details" *ngIf="tvShowData" [style.background-image]="backgroundImage">
-    <img [src]="imageBaseUrl + tvShowData.poster_path" [alt]="tvShowData.title" width="400" height="600" class="poster">
-<div class="tvShow-meta-data-container">
-    <div class="title">
-        {{tvShowData.name}}
-    </div>
-    <div class="details">
-        {{tvShowData.overview}}
-    </div>
-    <div  class="tags">
-        <span class="genre-ist" *ngFor="let genre of tvShowData.genres; let i = index">
-            <span>
-                {{genre.name}}
-                <span *ngIf="i < tvShowData.genres.length - 1">
-                    ,
-                </span>
-                <span *ngIf="i === tvShowData.genres.length - 1">
-                    .
-                </span>
-            </span>
-        </span>
-    </div>
-    <div  class="details">
-        <span class="production-list" *ngFor="let production of tvShowData.production_companies; let i = index">
-            <span>
-                {{production.name}}
-                <span *ngIf="i < tvShowData.production_companies.length - 1">
-                    ,
-                </span>
-                <span *ngIf="i === tvShowData.production_companies.length - 1">
-                    .
+<div class="tvShow-details" *ngIf="tvShowData && loadedTvShowData" [style.background-image]="backgroundImage">
+    <img [src]="imageBaseUrl + tvShowData.poster_path" [alt]="tvShowData.title" width="400" height="550" class="poster">
+    <div class="tvShow-meta-data-container">
+        <div class="title">
+            {{tvShowData.name}}
+        </div>
+        <div class="details">
+            {{tvShowData.overview}}
+        </div>
+        <div class="tags">
+            <span class="genre-ist" *ngFor="let genre of tvShowData.genres; let i = index">
+                <span>
+                    {{genre.name}}
+                    <span *ngIf="i < tvShowData.genres.length - 1">
+                        ,
+                    </span>
+                    <span *ngIf="i === tvShowData.genres.length - 1">
+                        .
+                    </span>
                 </span>
             </span>
-        </span>
-    </div>
-    <div class="release-details">
-           <div class="tags">
-            <span>
-                First Air Date - 
+        </div>
+        <div class="details">
+            <span class="production-list" *ngFor="let production of tvShowData.production_companies; let i = index">
+                <span>
+                    {{production.name}}
+                    <span *ngIf="i < tvShowData.production_companies.length - 1">
+                        ,
+                    </span>
+                    <span *ngIf="i === tvShowData.production_companies.length - 1">
+                        .
+                    </span>
+                </span>
             </span>
-            <span>
-                {{tvShowData.first_air_date | date:'longDate'}}
-            </span>
-           </div>
-           <div class="tags">
-            <span>
-                Last Air Date - 
-            </span>
-            <span>
-                {{tvShowData.last_air_date | date:'longDate'}} 
-            </span>
-           </div>
-           <div class="tags">
-            <span>
-                Number of Seasons - 
-            </span>
-            <span>
-                {{tvShowData.number_of_seasons}}
-            </span>
-           </div>
+        </div>
+        <div class="release-details">
+            <div class="tags">
+                <span>
+                    First Air Date -
+                </span>
+                <span>
+                    {{tvShowData.first_air_date | date:'longDate'}}
+                </span>
+            </div>
+            <div class="tags">
+                <span>
+                    Last Air Date -
+                </span>
+                <span>
+                    {{tvShowData.last_air_date | date:'longDate'}}
+                </span>
+            </div>
+            <div class="tags">
+                <span>
+                    Number of Seasons -
+                </span>
+                <span>
+                    {{tvShowData.number_of_seasons}}
+                </span>
+            </div>
+        </div>
     </div>
 </div>
-</div>
-<div class="tvShow-details" *ngIf="!tvShowData">
+<div class="tvShow-details" *ngIf="!tvShowData && loadedTvShowData">
     No tv show exists with this id.
 </div>
