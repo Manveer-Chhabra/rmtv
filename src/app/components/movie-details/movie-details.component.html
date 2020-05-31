@@ -1,0 +1,69 @@
+<div class="movie-details" *ngIf="movieData" [style.background-image]="backgroundImage">
+    <img [src]="imageBaseUrl + movieData.poster_path" [alt]="movieData.title" width="400" height="600" class="poster">
+    <div class="movie-meta-data-container">
+        <div class="title">
+            {{movieData.title}}
+        </div>
+        <div class="tagline">
+            {{movieData.tagline}}
+        </div>
+        <div class="details">
+            {{movieData.overview}}
+        </div>
+        <div  class="tags">
+            <span class="genre-ist" *ngFor="let genre of movieData.genres; let i = index">
+                <span>
+                    {{genre.name}}
+                    <span *ngIf="i < movieData.genres.length - 1">
+                        ,
+                    </span>
+                    <span *ngIf="i === movieData.genres.length - 1">
+                        .
+                    </span>
+                </span>
+            </span>
+        </div>
+        <div  class="details">
+            <span class="production-list" *ngFor="let production of movieData.production_companies; let i = index">
+                <span>
+                    {{production.name}}
+                    <span *ngIf="i < movieData.production_companies.length - 1">
+                        ,
+                    </span>
+                    <span *ngIf="i === movieData.production_companies.length - 1">
+                        .
+                    </span>
+                </span>
+            </span>
+        </div>
+        <div class="release-details">
+               <div class="tags">
+                <span>
+                    Release Date - 
+                </span>
+                <span>
+                    {{movieData.release_date | date:'longDate'}}
+                </span>
+               </div>
+               <div class="tags">
+                <span>
+                    Running Time - 
+                </span>
+                <span>
+                    {{movieData.runtime}} mins
+                </span>
+               </div>
+               <div class="tags">
+                <span>
+                    Box Office - 
+                </span>
+                <span>
+                    {{movieData.revenue | currency:"USD":"symbol"}}
+                </span>
+               </div>
+        </div>
+    </div>
+</div>
+<div class="movie-details" *ngIf="!movieData">
+    No movie exists with this id.
+</div>

@@ -17,4 +17,12 @@ export class SharedService {
   getFilteredTvShowResults(searchQuery, page): Observable<any>{
     return this.httpService.get(`${this.baseURL}search/tv?query=${searchQuery}&api_key=${this.apiKey}&page=${page}`);
   }
+
+  getMovieDetails(movieId){
+    return this.httpService.get(`${this.baseURL}movie/${movieId}?api_key=${this.apiKey}`);
+  }
+
+  getTvShowDetails(tvShowId){
+    return this.httpService.get(`${this.baseURL}tv/${tvShowId}?api_key=${this.apiKey}`);
+  }
 }

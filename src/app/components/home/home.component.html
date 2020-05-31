@@ -1,47 +1,39 @@
 <app-search-bar (search)="onSearch($event)"></app-search-bar>
 
-<div class="search-results-container" *ngIf="movieSearchResults.length !==0">
+<div class="search-results-container" *ngIf="searched">
     <div class="section-header">
-        Movies
+        Movies {{totalMovieResults}}
     </div>
-    <div class="section-content"
-     infiniteScroll
-    [infiniteScrollDistance]="0"
-    [infiniteScrollThrottle]="300"
-    (scrolled)="moviesScrolled()"
-    [scrollWindow]="false"
-    [horizontal]= "true">
+    <div class="section-content" infiniteScroll [infiniteScrollDistance]="0" [infiniteScrollThrottle]="150"
+        (scrolled)="moviesScrolled()" [scrollWindow]="false" [horizontal]="true" *ngIf="movieSearchResults.length !==0 && loadedMovieData">
         <div *ngFor="let dataItem of movieSearchResults">
             <div class="item-container">
-                <div class="item-title">
-                    {{dataItem.title}}
-                </div>
-                <div>
-                    <img [src]="imageBaseUrl + dataItem.poster_path" [alt]="dataItem.title">
-                </div>
+                <a  (click)="goToMovieDetails(dataItem)">
+                    <img [src]="imageBaseUrl + dataItem.poster_path" [alt]="dataItem.title" width="200" height="300" class="poster">
+                </a>
             </div>
         </div>
+    </div>
+    <div class="section-content-no-data" *ngIf="movieSearchResults.length ===0 && loadedMovieData">
+        No movies found.
     </div>
 </div>
-<div class="search-results-container" *ngIf="tvSearchResults.length !==0">
+
+<div class="search-results-container" *ngIf="searched">
     <div class="section-header">
-        TV Shows
+        TV Shows {{totalTvShowResults}}
     </div>
-    <div class="section-content" infiniteScroll
-    [infiniteScrollDistance]="0"
-    [infiniteScrollThrottle]="300"
-    (scrolled)="tvShowsScrolled()"
-    [scrollWindow]="false"
-    [horizontal]= "true">
+    <div class="section-content" infiniteScroll [infiniteScrollDistance]="0" [infiniteScrollThrottle]="150"
+        (scrolled)="tvShowsScrolled()" [scrollWindow]="false" [horizontal]="true" *ngIf="tvSearchResults.length !==0 && loadedTvShowData">
         <div *ngFor="let dataItem of tvSearchResults">
             <div class="item-container">
-                <div class="item-title">
-                    {{dataItem.name}}
-                </div>
-                <div >
-                    <img [src]="imageBaseUrl + dataItem.poster_path" [alt]="dataItem.name">
-                </div>
+                <a  (click)="goToTvShowDetails(dataItem)">
+                    <img [src]="imageBaseUrl + dataItem.poster_path" [alt]="dataItem.name"  width="200" height="300" class="poster">
+                </a>
             </div>
         </div>
+    </div>
+    <div class="section-content-no-data" *ngIf="tvSearchResults.length ===0 && loadedTvShowData">
+        No tv shows found.
     </div>
 </div>

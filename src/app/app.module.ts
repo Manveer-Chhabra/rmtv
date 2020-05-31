@@ -14,13 +14,17 @@ import { MatInputModule } from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
+import { TvShowDetailsComponent } from './components/tv-show-details/tv-show-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    MovieDetailsComponent,
+    TvShowDetailsComponent
   ],
   imports: [
     BrowserModule,
