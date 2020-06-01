@@ -18,4 +18,8 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['']);
   }
 
+  goToMyRatings(){
+    this.router.navigate(['/my_ratings']);
+  }
+
 }

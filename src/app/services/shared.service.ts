@@ -41,5 +41,14 @@ export class SharedService {
     return this.httpService.post(`${this.baseURL}tv/${tvShowId}/rating?api_key=${this.apiKey}&guest_session_id=${guestSessionId}`, {value: rating});
   }
 
+  getRatedMovieResults(page): Observable<any>{
+    const guestSessionId = this.sharedDataService.getGuestSessionId();
+    return this.httpService.get(`${this.baseURL}guest_session/${guestSessionId}/rated/movies?api_key=${this.apiKey}&language=en-US&sort_by=created_at.asc&page=${page}`);
+  }
+
+  getRatedTvResults(page): Observable<any>{
+    const guestSessionId = this.sharedDataService.getGuestSessionId();
+    return this.httpService.get(`${this.baseURL}guest_session/${guestSessionId}/rated/tv?api_key=${this.apiKey}&language=en-US&sort_by=created_at.asc&page=${page}`);
+  }
 }
 

@@ -3,9 +3,18 @@ background: black;
 height: 40px;
 .header-title{
     color: white;
-    padding: 5px 10px;
+    margin: 5px 10px;
     font-size: 1.5rem;
     font-weight: 800;
+    display: inline-block;
+    cursor: pointer;
+}
+.my-ratings{
+    color: white;
+    float: right;
+    margin: 10px;
+    font-weight: 600;
+    font-size: 1.2rem;
     cursor: pointer;
 }
 }

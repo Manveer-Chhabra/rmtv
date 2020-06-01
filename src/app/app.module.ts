@@ -17,6 +17,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 import { TvShowDetailsComponent } from './components/tv-show-details/tv-show-details.component';
 import { MatSliderModule } from '@angular/material/slider';
+import { MyRatingsComponent } from './components/my-ratings/my-ratings.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MatSliderModule } from '@angular/material/slider';
     HomeComponent,
     SearchBarComponent,
     MovieDetailsComponent,
-    TvShowDetailsComponent
+    TvShowDetailsComponent,
+    MyRatingsComponent
   ],
   imports: [
     BrowserModule,
