@@ -28,7 +28,7 @@ export class SharedService {
   }
 
   getGuestSessionId(){
-    return this.httpService.get(`${this.baseURL}authentication/token/new?api_key=${this.apiKey}`);
+    return this.httpService.get(`${this.baseURL}authentication/guest_session/new?api_key=${this.apiKey}`);
   }
 
   addMovieRating(movieId, rating){

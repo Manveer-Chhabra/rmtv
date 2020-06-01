@@ -29,9 +29,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.sharedService.getGuestSessionId().subscribe(data => {
-      this.sharedDataService.setGuestSessionId(data['request_token']);
-    });
     this.searchText = this.sharedDataService.getSearchInput();
     if (this.searchText) {
       this.getMoviesAndTvShowData();
