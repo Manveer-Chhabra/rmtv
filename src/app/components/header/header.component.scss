@@ -1,6 +1,8 @@
 .header {
-background: black;
-height: 40px;
+    background: black;
+    display: flex;
+    height: 40px;
+    justify-content: space-between;
 .header-title{
     color: white;
     margin: 5px 10px;
@@ -11,7 +13,6 @@ height: 40px;
 }
 .my-ratings{
     color: white;
-    float: right;
     margin: 10px;
     font-weight: 600;
     font-size: 1.2rem;
