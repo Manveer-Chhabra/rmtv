@@ -1,1 +1,74 @@
-<div class="in-progress-message"> In Progress </div>
+<div class="my-ratings-container">
+    <div class="tabs-container">
+        <div class="tab movie-tab-title" [ngClass]="{'selected-tab': selectedTab === 'movie' ? true  : false}"
+            (click)="selectTab('movie')">
+            Movie Ratings
+        </div>
+        <div class="tab tv-tab-title" [ngClass]="{'selected-tab': selectedTab === 'tv' ? true  : false}"
+            (click)="selectTab('tv')">
+            TV Ratings
+        </div>
+    </div>
+    <div class="items-container" [hidden]="selectedTab !== 'movie' || !loadedMovieData" infiniteScroll
+        [infiniteScrollDistance]="0" [infiniteScrollThrottle]="150" (scrolled)="moviesScrolled()">
+        <div class="item-container" *ngFor="let movie of movieSearchResults">
+            <div class="movie-details-container">
+                <div>
+                    <a>
+                        <img [src]="imageBaseUrl + movie.poster_path" [alt]="movie.title" width="150" height="200"
+                            class="poster">
+                    </a>
+                </div>
+                <div class="movie-ratings">
+                    <div class="item-detail">
+                        {{movie.title}}
+                    </div>
+                    <div class="item-detail">
+                        {{movie.overview}}
+                    </div>
+                    <div class="item-detail">
+                        Rated - {{movie.rating}} / 10
+                    </div>
+                    <div class="item-detail">
+                        Average Rating - {{movie.vote_average}} / 10
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="no-data" *ngIf="totalMovieResults === 0 && loadedMovieData">
+            No movie ratings found.
+        </div>
+    </div>
+    <div class="items-container" [hidden]="selectedTab !== 'tv' || !loadedTvShowData" infiniteScroll
+        [infiniteScrollDistance]="0" [infiniteScrollThrottle]="150" (scrolled)="tvShowsScrolled()">
+        <div class="item-container" *ngFor="let tvShow of tvSearchResults">
+            <div class="details-container">
+                <div>
+                    <a>
+                        <img [src]="imageBaseUrl + tvShow.poster_path" [alt]="tvShow.title" width="150" height="200"
+                            class="poster">
+                    </a>
+                </div>
+                <div class="ratings">
+                    <div class="item-detail">
+                        {{tvShow.title}}
+                    </div>
+                    <div class="item-detail">
+                        {{tvShow.overview}}
+                    </div>
+                    <div class="item-detail">
+                        Rated - {{tvShow.rating}} / 10
+                    </div>
+                    <div class="item-detail">
+                        Average Rating - {{tvShow.vote_average}} / 10
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="no-data" *ngIf="totalTvShowResults === 0 && loadedTvShowData">
+            No tv show ratings found.
+        </div>
+    </div>
+</div>

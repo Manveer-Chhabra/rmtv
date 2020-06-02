@@ -1,4 +1,48 @@
-.in-progress-message {
-    display: flex;
-    justify-content: center;
+.my-ratings-container{
+    .tabs-container{
+        display: flex;
+        justify-content: center;
+        .tab{
+            margin: 10px 0;
+            border: 1px solid;
+            padding: 5px;
+            text-align: center;
+            width: 200px;
+            cursor: pointer;
+        }
+        .movie-tab-title{
+            border-right: 0;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+        .tv-tab-title{
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            }
+        .selected-tab {
+            background: lightblue;
+        }
+    }
+    .items-container{
+        margin: 10px 0;
+        height: calc(100vh - 150px);
+        overflow-y: auto;
+        .item-container{
+            margin: 10px;
+            border-bottom: 1px solid gray;
+            .details-container{
+                display: flex;
+                .ratings{
+                    margin: 0 10px;
+                    .item-detail{
+                        margin: 10px 0;
+                    }
+                }
+            }
+        }
+    }
+    .no-data{
+            margin: 0 20px;
+            text-align: center;
+    }
 }

@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   movieSearchResults = [];
   tvSearchResults = [];
   imageBaseUrl = 'https://image.tmdb.org/t/p/w200';
-  movieScrollCallback;
   searchText;
   totalMovieResults;
   totalTvShowResults;
@@ -25,7 +24,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription();
 
   constructor(private sharedService: SharedService, private router: Router, private sharedDataService: SharedDataService) {
-    this.movieScrollCallback = this.moviesScrolled.bind(this);
   }
 
   ngOnInit(): void {
