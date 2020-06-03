@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   loadedMovieData = false;
   loadedTvShowData = false;
   private subscriptions = new Subscription();
+  selectedTab = 'movie';
 
   constructor(private sharedService: SharedService, private router: Router, private sharedDataService: SharedDataService) {
   }
@@ -102,6 +103,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   goToTvShowDetails(movie) {
     this.router.navigate(['/tv_show', { id: movie.id }]);
+  }
+
+  selectTab(selectedTab){
+    this.selectedTab = selectedTab;
   }
 
   ngOnDestroy() {

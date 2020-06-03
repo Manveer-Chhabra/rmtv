@@ -18,6 +18,7 @@ import { MovieDetailsComponent } from './components/movie-details/movie-details.
 import { TvShowDetailsComponent } from './components/tv-show-details/tv-show-details.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { MyRatingsComponent } from './components/my-ratings/my-ratings.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MyRatingsComponent } from './components/my-ratings/my-ratings.component
     SearchBarComponent,
     MovieDetailsComponent,
     TvShowDetailsComponent,
-    MyRatingsComponent
+    MyRatingsComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

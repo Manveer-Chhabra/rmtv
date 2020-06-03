@@ -1,5 +1,29 @@
 .home-container{
     margin-bottom: 50px;
+    .tabs-container{
+        display: flex;
+        justify-content: center;
+        .tab{
+            margin: 10px 0;
+            border: 1px solid;
+            padding: 5px;
+            text-align: center;
+            width: 200px;
+            cursor: pointer;
+        }
+        .movie-tab-title{
+            border-right: 0;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+        .tv-tab-title{
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            }
+        .selected-tab {
+            background: lightblue;
+        }
+    }
     .search-results-container{
         .section-header{
             margin: 20px;
@@ -11,9 +35,11 @@
         }
         .section-content{
             display: flex;
-            flex-direction: row;
-            overflow-x: auto;
+            overflow-y: auto;
             margin: 0 20px;
+            flex-wrap: wrap;
+            height: calc(100vh - 300px);
+            justify-content: space-around;
             .item-container {
                 width: 200px;
                 margin: 10px;

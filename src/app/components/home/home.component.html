@@ -1,15 +1,24 @@
 <div class="home-container">
     <app-search-bar (search)="onSearch($event)" [searchInput]="searchText"></app-search-bar>
-
-    <div class="search-results-container" *ngIf="searched">
+    <div class="tabs-container"  *ngIf="searched">
+        <div class="tab movie-tab-title" [ngClass]="{'selected-tab': selectedTab === 'movie' ? true  : false}"
+            (click)="selectTab('movie')">
+            Movie 
+        </div>
+        <div class="tab tv-tab-title" [ngClass]="{'selected-tab': selectedTab === 'tv' ? true  : false}"
+            (click)="selectTab('tv')">
+            TV 
+        </div>
+    </div>
+    <div class="search-results-container"  [hidden]="!searched || selectedTab !== 'movie'">
         <div class="section-header">
             Movies
             <span class="results-count" *ngIf="loadedMovieData">
                 ({{totalMovieResults}})
             </span>
         </div>
-        <div class="section-content" infiniteScroll [infiniteScrollDistance]="0" [infiniteScrollThrottle]="150"
-            (scrolled)="moviesScrolled()" [scrollWindow]="false" [horizontal]="true"
+        <div class="section-content" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="150"
+            (scrolled)="moviesScrolled()" [scrollWindow]="false" 
             *ngIf="movieSearchResults.length !==0 && loadedMovieData">
             <div *ngFor="let dataItem of movieSearchResults">
                 <div class="item-container">
@@ -23,17 +32,20 @@
         <div class="section-content-no-data" *ngIf="movieSearchResults.length ===0 && loadedMovieData">
             No movies found.
         </div>
+        <div class="loader" *ngIf="!loadedMovieData">
+            <app-spinner></app-spinner>
+        </div>
     </div>
 
-    <div class="search-results-container" *ngIf="searched">
+    <div class="search-results-container" [hidden]="!searched || selectedTab !== 'tv'">
         <div class="section-header">
             TV Shows
             <span class="results-count" *ngIf="loadedTvShowData">
                 ({{totalTvShowResults}})
             </span>
         </div>
-        <div class="section-content" infiniteScroll [infiniteScrollDistance]="0" [infiniteScrollThrottle]="150"
-            (scrolled)="tvShowsScrolled()" [scrollWindow]="false" [horizontal]="true"
+        <div class="section-content" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="150"
+            (scrolled)="tvShowsScrolled()" [scrollWindow]="false" 
             *ngIf="tvSearchResults.length !==0 && loadedTvShowData">
             <div *ngFor="let dataItem of tvSearchResults">
                 <div class="item-container">
@@ -46,6 +58,9 @@
         </div>
         <div class="section-content-no-data" *ngIf="tvSearchResults.length ===0 && loadedTvShowData">
             No tv shows found.
+        </div>
+        <div class="loader" *ngIf="!loadedTvShowData">
+            <app-spinner></app-spinner>
         </div>
     </div>
 </div>

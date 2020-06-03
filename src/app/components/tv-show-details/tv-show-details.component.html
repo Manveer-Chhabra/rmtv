@@ -38,7 +38,7 @@
                 <span>
                     First Air Date -
                 </span>
-                <span>
+                <span class="details">
                     {{tvShowData.first_air_date | date:'longDate'}}
                 </span>
             </div>
@@ -46,7 +46,7 @@
                 <span>
                     Last Air Date -
                 </span>
-                <span>
+                <span class="details">
                     {{tvShowData.last_air_date | date:'longDate'}}
                 </span>
             </div>
@@ -54,13 +54,13 @@
                 <span>
                     Number of Seasons -
                 </span>
-                <span>
+                <span class="details">
                     {{tvShowData.number_of_seasons}}
                 </span>
             </div>
             <div class="tags">
                 <span>
-                    Rate It -
+                    Rate -
                 </span>
                 <span>
                     <mat-slider thumbLabel tickInterval=".5" min="0" max="10" step="0.5" (change)="addRating($event)">

@@ -9,8 +9,8 @@
             TV Ratings
         </div>
     </div>
-    <div class="items-container" [hidden]="selectedTab !== 'movie' || !loadedMovieData" infiniteScroll
-        [infiniteScrollDistance]="0" [infiniteScrollThrottle]="150" (scrolled)="moviesScrolled()" [scrollWindow]="false" >
+    <div class="items-container" [hidden]="selectedTab !== 'movie'" infiniteScroll
+        [infiniteScrollDistance]="1" [infiniteScrollThrottle]="150" (scrolled)="moviesScrolled()" [scrollWindow]="false" >
         <div class="item-container" *ngFor="let movie of movieSearchResults">
             <div class="details-container">
                 <div>
@@ -27,21 +27,29 @@
                         {{movie.overview}}
                     </div>
                     <div class="item-detail rating">
-                        Rated - {{movie.rating}} / 10
+                        Rated - 
+                        <span class="rated">
+                            {{movie.rating}} 
+                        </span>
                     </div>
                     <div class="item-detail rating">
-                        Average Rating - {{movie.vote_average}} / 10
+                        Average Rating - 
+                        <span class="average-rating">
+                            {{movie.vote_average}} / 10
+                        </span>
                     </div>
                 </div>
-
             </div>
         </div>
         <div class="no-data" *ngIf="totalMovieResults === 0 && loadedMovieData">
             No movie ratings found.
         </div>
+        <div class="loader" *ngIf="!loadedMovieData">
+            <app-spinner></app-spinner>
+        </div>
     </div>
-    <div class="items-container" [hidden]="selectedTab !== 'tv' || !loadedTvShowData" infiniteScroll
-        [infiniteScrollDistance]="0" [infiniteScrollThrottle]="150" (scrolled)="tvShowsScrolled()" [scrollWindow]="false" >
+    <div class="items-container" [hidden]="selectedTab !== 'tv'" infiniteScroll
+        [infiniteScrollDistance]="1" [infiniteScrollThrottle]="150" (scrolled)="tvShowsScrolled()" [scrollWindow]="false" >
         <div class="item-container" *ngFor="let tvShow of tvSearchResults">
             <div class="details-container">
                 <div>
@@ -58,17 +66,25 @@
                         {{tvShow.overview}}
                     </div>
                     <div class="item-detail rating">
-                        Rated - {{tvShow.rating}} / 10
+                        Rated - 
+                        <span class="rated">
+                            {{tvShow.rating}} 
+                        </span>
                     </div>
                     <div class="item-detail rating">
-                        Average Rating - {{tvShow.vote_average}} / 10
+                        Average Rating - 
+                        <span class="average-rating">
+                            {{tvShow.vote_average}} / 10
+                        </span>
                     </div>
                 </div>
-
             </div>
         </div>
         <div class="no-data" *ngIf="totalTvShowResults === 0 && loadedTvShowData">
             No tv show ratings found.
+        </div>
+        <div class="loader" *ngIf="!loadedTvShowData">
+            <app-spinner></app-spinner>
         </div>
     </div>
 </div>

@@ -43,7 +43,14 @@
                     }
                     .rating{
                         font-size: 1rem;
-                        font-weight: 600;
+                        font-weight: 500;
+                        .rated{
+                            font-weight: 400;
+                            color: yellowgreen
+                        }
+                        .average-rating{
+                            font-weight: 400;
+                        }
                     }
                 }
             }

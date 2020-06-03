@@ -4,7 +4,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 .mat-accent .mat-slider-track-fill, .mat-accent .mat-slider-thumb, .mat-accent .mat-slider-thumb-label {
-    background-color: yellowgreen;
+    background-color: yellowgreen
 }
 
 .mat-slider-horizontal {
@@ -16,4 +16,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 .mat-slider-min-value.mat-slider-thumb-label-showing .mat-slider-thumb, .mat-slider-min-value.mat-slider-thumb-label-showing .mat-slider-thumb-label {
     background-color: rgba(128,128,128,.87);
+}
+.loader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 120px;
 }

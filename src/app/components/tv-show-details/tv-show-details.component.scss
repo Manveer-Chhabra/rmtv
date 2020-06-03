@@ -3,6 +3,9 @@
     display: flex;
     height: calc(100vh - 75px);
     align-items: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
     .tvShow-meta-data-container{
         background: rgba(0,0,0,.85);
         color: white;
@@ -29,6 +32,10 @@
             font-size: 1.2rem;
             margin: 10px 0;
             font-weight: 600;
+            .details{
+                font-weight: 400;
+                color: yellowgreen;
+            }
         }
     }
 }
