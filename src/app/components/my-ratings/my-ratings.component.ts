@@ -46,6 +46,7 @@ export class MyRatingsComponent implements OnInit, OnDestroy {
       this.sharedService.getRatedTvResults(this.tvShowsPage).subscribe(data => {
         this.totalTvShowResults = data.total_results;
         this.tvSearchResults = data.results;
+        this.tvShowsPage++;
         this.loadedTvShowData = true;
         // console.log(data);
       }, err => {

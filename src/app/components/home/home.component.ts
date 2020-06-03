@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   tvShowsPage = 1;
   movieSearchResults = [];
   tvSearchResults = [];
-  imageBaseUrl = 'https://image.tmdb.org/t/p/w200';
+  imageBaseUrl = 'https://image.tmdb.org/t/p/w500';
   searchText;
   totalMovieResults;
   totalTvShowResults;
@@ -69,6 +69,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.sharedService.getFilteredTvShowResults(this.searchText, this.tvShowsPage).subscribe(data => {
         this.totalTvShowResults = data.total_results;
         this.tvSearchResults = data.results;
+        this.tvShowsPage++;
         this.loadedTvShowData = true;
       }, err => {
         console.log(err);

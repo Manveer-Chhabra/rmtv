@@ -10,26 +10,26 @@
         </div>
     </div>
     <div class="items-container" [hidden]="selectedTab !== 'movie' || !loadedMovieData" infiniteScroll
-        [infiniteScrollDistance]="0" [infiniteScrollThrottle]="150" (scrolled)="moviesScrolled()">
+        [infiniteScrollDistance]="0" [infiniteScrollThrottle]="150" (scrolled)="moviesScrolled()" [scrollWindow]="false" >
         <div class="item-container" *ngFor="let movie of movieSearchResults">
-            <div class="movie-details-container">
+            <div class="details-container">
                 <div>
                     <a>
                         <img [src]="imageBaseUrl + movie.poster_path" [alt]="movie.title" width="150" height="200"
                             class="poster">
                     </a>
                 </div>
-                <div class="movie-ratings">
-                    <div class="item-detail">
+                <div class="ratings">
+                    <div class="item-detail title">
                         {{movie.title}}
                     </div>
                     <div class="item-detail">
                         {{movie.overview}}
                     </div>
-                    <div class="item-detail">
+                    <div class="item-detail rating">
                         Rated - {{movie.rating}} / 10
                     </div>
-                    <div class="item-detail">
+                    <div class="item-detail rating">
                         Average Rating - {{movie.vote_average}} / 10
                     </div>
                 </div>
@@ -41,7 +41,7 @@
         </div>
     </div>
     <div class="items-container" [hidden]="selectedTab !== 'tv' || !loadedTvShowData" infiniteScroll
-        [infiniteScrollDistance]="0" [infiniteScrollThrottle]="150" (scrolled)="tvShowsScrolled()">
+        [infiniteScrollDistance]="0" [infiniteScrollThrottle]="150" (scrolled)="tvShowsScrolled()" [scrollWindow]="false" >
         <div class="item-container" *ngFor="let tvShow of tvSearchResults">
             <div class="details-container">
                 <div>
@@ -51,16 +51,16 @@
                     </a>
                 </div>
                 <div class="ratings">
-                    <div class="item-detail">
-                        {{tvShow.title}}
+                    <div class="item-detail title">
+                        {{tvShow.name}}
                     </div>
                     <div class="item-detail">
                         {{tvShow.overview}}
                     </div>
-                    <div class="item-detail">
+                    <div class="item-detail rating">
                         Rated - {{tvShow.rating}} / 10
                     </div>
-                    <div class="item-detail">
+                    <div class="item-detail rating">
                         Average Rating - {{tvShow.vote_average}} / 10
                     </div>
                 </div>
