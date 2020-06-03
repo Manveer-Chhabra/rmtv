@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SharedService } from 'src/app/services/shared.service';
+import { SharedDataService } from 'src/app/services/shared-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-ratings',
@@ -20,11 +22,16 @@ export class MyRatingsComponent implements OnInit, OnDestroy {
   selectedTab = 'movie';
   imageBaseUrl = 'https://image.tmdb.org/t/p/w200';
 
-  constructor(private sharedService: SharedService) { }
+  constructor(private sharedService: SharedService,private sharedDataService: SharedDataService, private router: Router) { }
 
   ngOnInit(): void {
-    this.loadRatedMovies();
-    this.loadRatedTvShows();
+    if (this.sharedDataService.getGuestSessionId()){
+      this.loadRatedMovies();
+      this.loadRatedTvShows();
+    } else {
+      this.router.navigate(['']);
+    }
+
   }
 
   loadRatedMovies() {
@@ -34,7 +41,6 @@ export class MyRatingsComponent implements OnInit, OnDestroy {
         this.totalMovieResults = data.total_results;
         this.moviesPage++;
         this.loadedMovieData = true;
-        // console.log(data);
       }, err => {
         console.log(err);
       }
@@ -48,7 +54,6 @@ export class MyRatingsComponent implements OnInit, OnDestroy {
         this.tvSearchResults = data.results;
         this.tvShowsPage++;
         this.loadedTvShowData = true;
-        // console.log(data);
       }, err => {
         console.log(err);
       }
