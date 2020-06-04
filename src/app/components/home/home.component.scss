@@ -40,16 +40,23 @@
             flex-wrap: wrap;
             height: calc(100vh - 300px);
             justify-content: space-between;
-            .item-container {
-                width: 200px;
+            .data-item-container{
                 margin: 10px;
-                .poster{
-                    cursor: pointer;
-                }
-                .item-title{
+                .item-name{
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
+                    width: 200px;
+                    margin: 5px;
+                }
+                .item-container {
+                    width: 200px;
+                    margin: 0 5px;
+                    .item-title{
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
                 }
             }
         }

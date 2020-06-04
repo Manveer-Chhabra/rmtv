@@ -1,5 +1,6 @@
 <div class="movie-details" *ngIf="movieData  && loadedMovieData" [style.background-image]="backgroundImage">
-    <img [src]="imageBaseUrl + movieData.poster_path" [alt]="movieData.title" width="400" height="550" class="poster">
+    <img [src]="imageBaseUrl + movieData.poster_path" [alt]="movieData.title" width="400" height="550" class="link-pointer"
+    onerror="this.onerror=null;this.src='assets/images/no-image.jpg';">
     <div class="movie-meta-data-container">
         <div class="title">
             {{movieData.title}}
@@ -59,6 +60,14 @@
                 </span>
                 <span class="details">
                     {{movieData.revenue | currency:"USD":"symbol"}}
+                </span>
+            </div>
+            <div class="tags">
+                <span>
+                    Average Rating -
+                </span>
+                <span class="details">
+                    {{movieData.vote_average}}
                 </span>
             </div>
             <div class="tags">

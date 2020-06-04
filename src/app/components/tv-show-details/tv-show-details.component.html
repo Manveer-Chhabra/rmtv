@@ -1,5 +1,5 @@
 <div class="tvShow-details" *ngIf="tvShowData && loadedTvShowData" [style.background-image]="backgroundImage">
-    <img [src]="imageBaseUrl + tvShowData.poster_path" [alt]="tvShowData.title" width="400" height="550" class="poster">
+    <img [src]="imageBaseUrl + tvShowData.poster_path" [alt]="tvShowData.title" width="400" height="550" class="link-pointer" onerror="this.onerror=null;this.src='assets/images/no-image.jpg';">
     <div class="tvShow-meta-data-container">
         <div class="title">
             {{tvShowData.name}}
@@ -56,6 +56,14 @@
                 </span>
                 <span class="details">
                     {{tvShowData.number_of_seasons}}
+                </span>
+            </div>
+            <div class="tags">
+                <span>
+                    Average Rating -
+                </span>
+                <span class="details">
+                    {{tvShowData.vote_average}}
                 </span>
             </div>
             <div class="tags">

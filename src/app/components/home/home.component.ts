@@ -101,8 +101,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.router.navigate(['/movie', { id: movie.id }]);
   }
 
-  goToTvShowDetails(movie) {
-    this.router.navigate(['/tv_show', { id: movie.id }]);
+  goToTvShowDetails(tvShow) {
+    this.router.navigate(['/tv_show', { id: tvShow.id }]);
   }
 
   selectTab(selectedTab){
