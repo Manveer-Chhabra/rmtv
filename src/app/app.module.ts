@@ -19,6 +19,7 @@ import { TvShowDetailsComponent } from './components/tv-show-details/tv-show-det
 import { MatSliderModule } from '@angular/material/slider';
 import { MyRatingsComponent } from './components/my-ratings/my-ratings.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     MatIconModule,
     MatButtonModule,
     InfiniteScrollModule,
-    MatSliderModule
+    MatSliderModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

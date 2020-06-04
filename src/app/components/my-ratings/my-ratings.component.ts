@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { SharedService } from 'src/app/services/shared.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 import { Router } from '@angular/router';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-my-ratings',
@@ -22,10 +23,14 @@ export class MyRatingsComponent implements OnInit, OnDestroy {
   selectedTab = 'movie';
   imageBaseUrl = 'https://image.tmdb.org/t/p/w200';
 
-  constructor(private sharedService: SharedService,private sharedDataService: SharedDataService, private router: Router) { }
+  constructor(
+    private sharedService: SharedService,
+    private sharedDataService: SharedDataService,
+    private router: Router,
+    private notificationService: NotificationService) { }
 
   ngOnInit(): void {
-    if (this.sharedDataService.getGuestSessionId()){
+    if (this.sharedDataService.getGuestSessionId()) {
       this.loadRatedMovies();
       this.loadRatedTvShows();
     } else {
@@ -42,6 +47,7 @@ export class MyRatingsComponent implements OnInit, OnDestroy {
         this.moviesPage++;
         this.loadedMovieData = true;
       }, err => {
+        this.notificationService.showNotification('Fetch rated movies service Failed. Please refresh.', 'error');
         console.log(err);
       }
       ));
@@ -55,6 +61,7 @@ export class MyRatingsComponent implements OnInit, OnDestroy {
         this.tvShowsPage++;
         this.loadedTvShowData = true;
       }, err => {
+        this.notificationService.showNotification('Fetch rated Tv shows service failed. Please refresh.', 'error');
         console.log(err);
       }
       ));
@@ -65,6 +72,7 @@ export class MyRatingsComponent implements OnInit, OnDestroy {
       this.moviesPage++;
       this.movieSearchResults = this.movieSearchResults.concat(data.results);
     }, err => {
+      this.notificationService.showNotification('Fetch rated movies service failed. Please refresh.', 'error');
       console.log(err);
     }
     ));
@@ -75,11 +83,12 @@ export class MyRatingsComponent implements OnInit, OnDestroy {
       this.tvShowsPage++;
       this.tvSearchResults = this.tvSearchResults.concat(data.results);
     }, err => {
+      this.notificationService.showNotification('Fetch rated Tv shows service failed. Please refresh.', 'error');
       console.log(err);
     }));
   }
 
-  selectTab(selectedTab){
+  selectTab(selectedTab) {
     this.selectedTab = selectedTab;
   }
 
@@ -91,7 +100,7 @@ export class MyRatingsComponent implements OnInit, OnDestroy {
     this.router.navigate(['/tv_show', { id: tvShow.id }]);
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.subscriptions.unsubscribe();
   }
 }

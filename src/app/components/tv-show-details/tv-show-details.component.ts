@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from 'src/app/services/shared.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-tv-show-details',
@@ -22,7 +23,8 @@ export class TvShowDetailsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private sharedService: SharedService,
-    private sanitizer: DomSanitizer) {
+    private sanitizer: DomSanitizer,
+    private notificationService: NotificationService) {
     this.tvShowId = this.route.snapshot.paramMap.get('id');
   }
 
@@ -35,14 +37,16 @@ export class TvShowDetailsComponent implements OnInit, OnDestroy {
         this.backgroundImage = this.sanitizer.bypassSecurityTrustStyle(`url(${backdropImageUrl})`);
       }, err => {
         console.log(err);
+        this.notificationService.showNotification('Fetch Tv show service Failed. Please refresh.', 'error');
         this.loadedTvShowData = true;
       }));
   }
 
   addRating($event) {
     this.sharedService.addTvShowRating(this.tvShowId, $event.value).subscribe(data => {
-      // console.log(data);
+      this.notificationService.showNotification('TV show rating added successfully.', 'success');
     }, err => {
+      this.notificationService.showNotification('Fetch tv show service Failed. Please refresh.', 'error');
       console.log(err);
     });
   }

@@ -26,3 +26,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .link-pointer{
     cursor: pointer;
 }
+.success {
+    background: green;
+    color: white;
+    font-weight: 400;
+    font-size: 18px;
+}
+.error {
+    background: red;
+    color: white;
+    font-weight: 400;
+    font-size: 18px;
+}

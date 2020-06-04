@@ -3,6 +3,7 @@ import { SharedService } from 'src/app/services/shared.service';
 import { combineLatest, forkJoin, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { SharedDataService } from 'src/app/services/shared-data.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +25,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription();
   selectedTab = 'movie';
 
-  constructor(private sharedService: SharedService, private router: Router, private sharedDataService: SharedDataService) {
+  constructor(
+    private sharedService: SharedService,
+    private router: Router,
+    private sharedDataService: SharedDataService,
+    private notificationService: NotificationService) {
   }
 
   ngOnInit(): void {
@@ -60,6 +65,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.moviesPage++;
         this.loadedMovieData = true;
       }, err => {
+        this.notificationService.showNotification('Fetch movies service Failed. Please refresh.', 'error');
         console.log(err);
       }
       ));
@@ -73,6 +79,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.tvShowsPage++;
         this.loadedTvShowData = true;
       }, err => {
+        this.notificationService.showNotification('Fetch Tv Shows Service Failed. Please refresh.', 'error');
         console.log(err);
       }
       ));
@@ -83,6 +90,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.moviesPage++;
       this.movieSearchResults = this.movieSearchResults.concat(data.results);
     }, err => {
+      this.notificationService.showNotification('Fetch movies service failed. Please refresh.', 'error');
       console.log(err);
     }
     ));
@@ -93,6 +101,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.tvShowsPage++;
       this.tvSearchResults = this.tvSearchResults.concat(data.results);
     }, err => {
+      this.notificationService.showNotification('Fetch Tv shows service failed. Please refresh.', 'error');
       console.log(err);
     }));
   }

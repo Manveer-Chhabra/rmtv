@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from 'src/app/services/shared.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-movie-details',
@@ -23,7 +24,8 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private sharedService: SharedService,
-    private sanitizer: DomSanitizer) {
+    private sanitizer: DomSanitizer,
+    private notificationService: NotificationService) {
     this.movieId = this.route.snapshot.paramMap.get('id');
   }
 
@@ -36,14 +38,16 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
         this.backgroundImage = this.sanitizer.bypassSecurityTrustStyle(`url(${backdropImageUrl})`);
       }, err => {
         console.log(err);
+        this.notificationService.showNotification('Fetch movie details service failed. Please refresh.', 'error');
         this.loadedMovieData = true;
       }));
   }
 
   addRating($event) {
     this.sharedService.addMovieRating(this.movieId, $event.value).subscribe(data => {
-      // console.log(data);
+      this.notificationService.showNotification('Movie rating added successfully.', 'success');
     }, err => {
+      this.notificationService.showNotification('Fetch movies service failed. Please refresh.', 'error');
       console.log(err);
     });
   }
