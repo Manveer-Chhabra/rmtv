@@ -83,6 +83,14 @@ export class MyRatingsComponent implements OnInit, OnDestroy {
     this.selectedTab = selectedTab;
   }
 
+  goToMovieDetails(movie) {
+    this.router.navigate(['/movie', { id: movie.id }]);
+  }
+
+  goToTvShowDetails(tvShow) {
+    this.router.navigate(['/tv_show', { id: tvShow.id }]);
+  }
+
   ngOnDestroy(){
     this.subscriptions.unsubscribe();
   }
