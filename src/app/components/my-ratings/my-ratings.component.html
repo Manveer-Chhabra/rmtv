@@ -10,20 +10,20 @@
         </div>
     </div>
     <div class="items-container" [hidden]="selectedTab !== 'movie'" infiniteScroll
-        [infiniteScrollDistance]="1" [infiniteScrollThrottle]="150" (scrolled)="moviesScrolled()" [scrollWindow]="false" >
+        [infiniteScrollDistance]="2" [infiniteScrollThrottle]="150" (scrolled)="moviesScrolled()" [scrollWindow]="false" >
         <div class="item-container" *ngFor="let movie of movieSearchResults">
             <div class="details-container">
                 <div>
-                    <a>
+                    <a (click)="goToMovieDetails(movie)">
                         <img [src]="imageBaseUrl + movie.poster_path" [alt]="movie.title" width="150" height="200"
-                            class="poster">
+                            class="link-pointer" onerror="this.onerror=null;this.src='assets/images/no-image.jpg';">
                     </a>
                 </div>
                 <div class="ratings">
                     <div class="item-detail title">
                         {{movie.title}}
                     </div>
-                    <div class="item-detail">
+                    <div class="item-detail overview">
                         {{movie.overview}}
                     </div>
                     <div class="item-detail rating">
@@ -49,20 +49,20 @@
         </div>
     </div>
     <div class="items-container" [hidden]="selectedTab !== 'tv'" infiniteScroll
-        [infiniteScrollDistance]="1" [infiniteScrollThrottle]="150" (scrolled)="tvShowsScrolled()" [scrollWindow]="false" >
+        [infiniteScrollDistance]="2" [infiniteScrollThrottle]="150" (scrolled)="tvShowsScrolled()" [scrollWindow]="false" >
         <div class="item-container" *ngFor="let tvShow of tvSearchResults">
             <div class="details-container">
                 <div>
-                    <a>
+                    <a (click)="goToTvShowDetails(tvShow)">
                         <img [src]="imageBaseUrl + tvShow.poster_path" [alt]="tvShow.title" width="150" height="200"
-                            class="poster">
+                            class="link-pointer" onerror="this.onerror=null;this.src='assets/images/no-image.jpg';">
                     </a>
                 </div>
                 <div class="ratings">
                     <div class="item-detail title">
                         {{tvShow.name}}
                     </div>
-                    <div class="item-detail">
+                    <div class="item-detail overview">
                         {{tvShow.overview}}
                     </div>
                     <div class="item-detail rating">
